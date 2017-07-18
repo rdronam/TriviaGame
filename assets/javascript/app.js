@@ -1,5 +1,5 @@
 $(document).ready(function() {
-// Create a function that creates the start button and initial screen
+
 
 function initialScreen() {
 	startScreen = "<p class='text-center main-button-container'><a class='btn btn-primary btn-lg btn-block start-button' href='#' role='button'>Start Quiz</a></p>";
@@ -8,60 +8,57 @@ function initialScreen() {
 
 initialScreen();
 
-//Create a function, generateHTML(), that is triggered by the start button, and generates the HTML seen on the project video...
 
 $("body").on("click", ".start-button", function(event){
-	event.preventDefault();  // added line to test issue on GitHub Viewer
-	clickSound.play();
+	event.preventDefault();  
 	generateHTML();
 
 	timerWrapper();
 
-}); // Closes start-button click
+}); 
 
 $("body").on("click", ".answer", function(event){
-	//answeredQuestion = true;
-	clickSound.play();
+	
 	selectedAnswer = $(this).text();
 	if(selectedAnswer === correctAnswers[questionCounter]) {
-		//alert("correct");
+		
 
 		clearInterval(theClock);
 		generateWin();
 	}
 	else {
-		//alert("wrong answer!");
+		
 		clearInterval(theClock);
 		generateLoss();
 	}
-}); // Close .answer click
+}); 
 
 $("body").on("click", ".reset-button", function(event){
 	clickSound.play();
 	resetGame();
-}); // Closes reset-button click
+}); 
 
-});  //  Closes jQuery wrapper
+});  
 
 function generateLossDueToTimeOut() {
 	unansweredTally++;
-	gameHTML = "<p class='text-center timer-p'>Time Remaining: <span class='timer'>" + counter + "</span></p>" + "<p class='text-center'>You ran out of time!  The correct answer was: " + correctAnswers[questionCounter] + "</p>" + "<img class='center-block img-wrong' src='img/x.png'>";
+	gameHTML = "<p class='text-center timer-p'>Time Remaining: <span class='timer'>" + counter + "</span></p>" + "<p class='text-center'>You ran out of time!  The correct answer was: " + correctAnswers[questionCounter] + "</p>" + "<img class='center-block img-wrong' src='assets/images/x.png'>";
 	$(".mainArea").html(gameHTML);
-	setTimeout(wait, 4000);  //  change to 4000 or other amount
+	setTimeout(wait, 4000);  
 }
 
 function generateWin() {
 	correctTally++;
 	gameHTML = "<p class='text-center timer-p'>Time Remaining: <span class='timer'>" + counter + "</span></p>" + "<p class='text-center'>Correct! The answer is: " + correctAnswers[questionCounter] + "</p>" + imageArray[questionCounter];
 	$(".mainArea").html(gameHTML);
-	setTimeout(wait, 4000);  //  change to 4000 or other amount
+	setTimeout(wait, 4000);  
 }
 
 function generateLoss() {
 	incorrectTally++;
-	gameHTML = "<p class='text-center timer-p'>Time Remaining: <span class='timer'>" + counter + "</span></p>" + "<p class='text-center'>Wrong! The correct answer is: "+ correctAnswers[questionCounter] + "</p>" + "<img class='center-block img-wrong' src='img/x.png'>";
+	gameHTML = "<p class='text-center timer-p'>Time Remaining: <span class='timer'>" + counter + "</span></p>" + "<p class='text-center'>Wrong! The correct answer is: "+ correctAnswers[questionCounter] + "</p>" + "<img class='center-block img-wrong' src='assets/images/x.png'>";
 	$(".mainArea").html(gameHTML);
-	setTimeout(wait, 4000); //  change to 4000 or other amount
+	setTimeout(wait, 4000); 
 }
 
 function generateHTML() {
@@ -113,14 +110,13 @@ function resetGame() {
 var startScreen;
 var gameHTML;
 var counter = 30;
-var questionArray = ["What is the capital of Australia?", "What is the capital of Liberia?", "What is the capital of Taiwan?", "What is the capital of Japan?", "What is the capital of China?", "What is the capital of Turkey?", "What is the capital of Colombia?", "What is the capital of India?"];
-var answerArray = [["Canberra", "Melbourne", "Sydney", "Darwin"], ["Arthington","Monrovia","Tuzon","Marshall"], ["Tainan City", "Taichung", "Taipei", "Hsinchu"], ["Kyoto","Hiroshima","Tokyo","Osaka"], ["Hong Kong", "Macau", "Shanghai", "Beijing"], ["Ankara","Istanbul","Antalya","Bursa"], ["Medellin", "Bogota", "Cartagena", "Cali"], ["Mumbai","Hyderabad","Bangalore","New Delhi"]];
-var imageArray = ["<img class='center-block img-right' src='img/australia.png'>", "<img class='center-block img-right' src='img/liberia.png'>", "<img class='center-block img-right' src='img/taiwan.png'>", "<img class='center-block img-right' src='img/japan.png'>", "<img class='center-block img-right' src='img/china.png'>", "<img class='center-block img-right' src='img/turkey.png'>", "<img class='center-block img-right' src='img/colombia.png'>", "<img class='center-block img-right' src='img/india.png'>"];
-var correctAnswers = ["A. Canberra", "B. Monrovia", "C. Taipei", "C. Tokyo", "D. Beijing", "A. Ankara", "B. Bogota", "D. New Delhi"];
+var questionArray = ["In The Day The Earth Stood Still, what was the name of the robot?", "In the movie Who Framed Roger Rabbit, which pair of similar characters perform a piano duet?", "What specific creature does Indiana Jones hate?", "What is the hometown in the Back To The Future movies?", "The Road Warrior was the title of a sequel to which film?",  "Which 2005 movie is a spin-off of the TV series Firefly?", "What is the planet Luke Skywalker lives on at the start of Star Wars: A New Hope?", "Who played Two-Face in The Dark Knight"];
+var answerArray = [["Klaatu", "Robbie", "TARS", "HAL"], ["Bambi and Bullwinkle", "Donald Duck and Daffy Duck", "Garfield and Sylvester", "Speedy Gonzales and Minnie Mouse"], ["Scorpions","Spiders","Snakes","Skunks"], ["Pinedale", "Hill Valley", "Sunnyville", "Springfield"], ["The Terminator","Aliens","The Fast and Furious","Mad Max"], ["Serenity", "The Chronicles of Riddick", "Solaris", "The Dark Knight"], ["Trenzelore", "Bogota", "Tatooine","Mumbai"] ["Miles Teller","Anthony Mackie","Heath Ledger","Aaron Eckhart"]];
+var imageArray = ["<img class='center-block img-right' src='assets/images/klaatu.jpg'>", "<img class='center-block img-right' src='assets/images/Donald_Duck_Daffy_Duck.jpg'>", "<img class='center-block img-right' src='assets/images/snakes.jpg'>", "<img class='center-block img-right' src='assets/images/HillValley.jpg'>", "<img class='center-block img-right' src='assets/images/MadMax.jpg'>", "<img class='center-block img-right' src='assets/images/Serenity.jpg'>", "<img class='center-block img-right' src='assets/images/tatooine.jpeg'>", "<img class='center-block img-right' src='assets/images/Two-Face.jpg'>"];
+var correctAnswers = ["A. Klaatu", "B. Donald Duck and Daffy Duck", "C. Snakes", "B. Hill Valley", "D. Mad Max", "A. Serenity", "C. Tatooine", "D. Aaron Eckhart"];
 var questionCounter = 0;
 var selecterAnswer;
 var theClock;
 var correctTally = 0;
 var incorrectTally = 0;
 var unansweredTally = 0;
-var clickSound = new Audio("sound/button-click.mp3");
